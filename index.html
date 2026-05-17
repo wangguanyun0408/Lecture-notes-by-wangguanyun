@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google ESG永續發展與生產作業管理 - 演講與簡報整合系統</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --g-blue: #4285F4;
+            --g-red: #EA4335;
+            --g-yellow: #FBBC05;
+            --g-green: #34A853;
+            --dark-bg: #0f172a;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #475569;
+            --script-bg: #f8fafc;
+        }
+
+        * { box-sizing: border-box; }
+        body {
+            background-color: var(--dark-bg);
+            margin: 0;
+            padding: 40px 20px;
+            font-family: 'Noto Sans TC', sans-serif;
+            color: var(--text-main);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 40px;
+        }
+
+        /* 導覽列 */
+        .nav-header {
+            width: 100%;
+            max-width: 1400px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            padding: 20px 40px;
+            border-radius: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .nav-title { color: white; font-size: 24px; font-weight: 700; margin: 0; }
+        .nav-meta { color: rgba(255,255,255,0.6); font-size: 16px; }
+
+        /* 21頁大型整合卡片 */
+        .presentation-block {
+            width: 100%;
+            max-width: 1400px;
+            background: var(--card-bg);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            border-top: 10px solid var(--g-blue);
+            position: relative;
+        }
+        
+        .presentation-block:nth-child(even) { border-top-color: var(--g-green); }
+        .presentation-block:nth-child(3n) { border-top-color: var(--g-red); }
+        .presentation-block:nth-child(4n) { border-top-color: var(--g-yellow); }
+
+        /* 左側：精美投影簡報區面 */
+        .slide-side {
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border-right: 1px solid #e2e8f0;
+            background: #ffffff;
+        }
+        .slide-num {
+            font-family: 'Poppins', sans-serif;
+            font-size: 16px;
+            color: var(--g-blue);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        .slide-header { font-size: 36px; font-weight: 700; margin: 20px 0; color: #0f172a; }
+        .slide-content { flex-grow: 1; display: flex; flex-direction: column; justify-content: center; }
+        .slide-text-list { padding-left: 20px; margin: 0 0 30px 0; }
+        .slide-text-list li { font-size: 20px; line-height: 1.6; color: var(--text-muted); margin-bottom: 12px; }
+        
+        .slide-visual {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 250px;
+        }
+        .slide-visual svg { width: 100%; height: auto; max-height: 240px; }
+
+        /* 右側：沉浸式演講講稿區面 */
+        .script-side {
+            background-color: var(--script-bg);
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            overflow-y: auto;
+        }
+        .script-tag {
+            display: inline-block;
+            align-self: flex-start;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 700;
+            background: rgba(66, 133, 244, 0.1);
+            color: var(--g-blue);
+        }
+        .script-side:nth-child(even) .script-tag { background: rgba(52, 168, 83, 0.1); color: var(--g-green); }
+        
+        .psychology-tip {
+            background: #fff;
+            border-left: 5px solid var(--g-yellow);
+            padding: 15px;
+            border-radius: 4px;
+            font-size: 16px;
+            color: #b45309;
+            font-weight: 700;
+        }
+        .speech-text {
+            font-size: 19px;
+            line-height: 1.7;
+            color: #334155;
+            white-space: pre-line;
+        }
+
+        /* 專屬矩陣樣式（第19頁） */
+        .tows-matrix {
+            display: grid;
+            grid-template-columns: 100px 1fr 1fr;
+            grid-template-rows: 60px 1fr 1fr;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .m-head { background: #e2e8f0; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 15px; text-align: center; }
+        .m-box { background: #f1f5f9; border-radius: 6px; padding: 12px; font-size: 14px; line-height: 1.4; border-left: 3px solid var(--g-blue); }
+        .m-box h5 { margin: 0 0 5px 0; color: var(--g-blue); font-size: 15px; }
+
+        /* KPI表格 */
+        .kpi-table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+        .kpi-table th { background: #4285F4; color: white; padding: 10px; font-size: 16px; text-align: left; }
+        .kpi-table td { padding: 10px; border-bottom: 1px solid #e2e8f0; font-size: 15px; }
+
+        /* 進度條樣式 */
+        .bar-container { display: flex; flex-direction: column; gap: 10px; margin-top: 15px; }
+        .bar-item { display: flex; align-items: center; gap: 10px; }
+        .bar-lbl { width: 120px; font-size: 14px; font-weight: 700; text-align: right; }
+        .bar-wrapper { flex-grow: 1; height: 24px; background: #e2e8f0; border-radius: 4px; overflow: hidden; }
+        .bar-fill { height: 100%; background: var(--g-blue); color: white; display: flex; align-items: center; justify-content: flex-end; padding-right: 10px; font-size: 12px; font-weight: 700; }
+
+        /* 響應式佈局 */
+        @media (max-width: 1200px) {
+            .presentation-block { grid-template-columns: 1fr; }
+            .slide-side { border-right: none; border-bottom: 1px solid #e2e8f0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="nav-header">
+        <h1 class="nav-title"><i class="fa-brands fa-google"></i> Google 經營專題網頁平台</h1>
+        <div class="nav-meta">報告組別：第二組 &nbsp;|&nbsp; 汪冠昀 吳承叡 黃柏竣</div>
+    </div>
+
+    <div class="presentation-block">
+        <div class="slide-side">
+            <span class="slide-num">Slide 01</span>
+            <h2 class="slide-header">Google ESG永續發展與<br>生產作業管理</h2>
+            <div class="slide-content">
+                <p style="font-size: 24px; font-weight: 700; color: var(--g-blue);">專題個案研究報告</p>
+                <p>報告組別：第二組<br>組員：汪冠昀 吳承叡 黃柏竣</p>
+            </div>
+            <div class="slide-visual">
+                <svg viewBox="0 0 240 60">
+                    <circle cx="30" cy="30" r="20" fill="#4285F4" />
+                    <circle cx="90" cy="30" r="20" fill="#EA4335" />
+                    <circle cx="150" cy="30" r="20" fill="#FBBC05" />
+                    <circle cx="210" cy="30" r="20" fill="#34A853" />
+                </svg>
+            </div>
+        </div>
+        <div class="script-side">
+            <span class="script-tag"><i class="fa-solid fa-headset"></i> 現場演講講稿</span>
+            <div class="psychology-tip"><i class="fa-solid fa-brain"></i> 心理學鉤子：首因效應（Primacy Effect）與打破平庸認知。</div>
+            <div class="speech-text">（站在台前中央，刻意保持安靜與肅穆3秒鐘，環視全場所有人，直到全場目光完全集中在你身上，微笑點頭，語氣沉穩緩慢）
+
+大家好。今天，我們第二組汪冠昀、吳承叡、黃柏竣，不打算做一場常規的、只丟數據的科技巨頭彙報。
+
+我想先請在座的各位摸摸你的口袋、或是看看你面前的筆電。你上一次感覺到「完全斷網、找不到答案」的那種集體心慌，是什麼時候？那種心慌，其實是我們人類最原始的基因恐懼——對未知的無助。
+
+今天我們報告的主題是《Google ESG永續發展與生產作業管理》。我們不談冷冰冰的會計報表，我們要談的是，這家接管了全球文明「好奇心」與「不確定焦慮」的科技帝國，它是如何一面高效運作這台全球最龐大的數據工廠，一面在試圖說服地球，它是具備良知且善良的。接下來的30分鐘，請大家保持專注，跟我一起潛入 Google 的運作核心。</div>
+        </div>
+    </div>
+
+    <div class="presentation-block">
+        <div class="slide-side">
+            <span class="slide-num">Slide 02</span>
+            <h2 class="slide-header">報告核心架構與分析路徑</h2>
+            <div class="slide-content">
+                <ul class="slide-text-list">
+                    <li><strong>企業靈魂：</strong> 起源歷史、信念與全球角色演變</li>
+                    <li><strong>生產作業管理：</strong> 數據生命週期、硬體供應鏈與品質可靠性</li>
+                    <li><strong>ESG 永續戰略：</strong> 敬畏自然、社會賦能與 AI 道德治理</li>
+                </ul>
+            </div>
+            <div class="slide-visual">
+                <svg viewBox="0 0 400 200">
+                    <line x1="50" y1="100" x2="350" y2="100" stroke="#cbd5e1" stroke-width="4"/>
+                    <circle cx="80" cy="100" r="25" fill="#4285F4" />
+                    <circle cx="200" cy="100" r="25" fill="#34A853" />
+                    <circle cx="320" cy="100" r="25" fill="#EA4335" />
+                    <text x="80" y="160" text-anchor="middle" font-weight="700">靈魂</text>
+                    <text x="200" y="160" text-anchor="middle" font-weight="700">作業</text>
+                    <text x="320" y="160" text-anchor="middle" font-weight="700">永續</text>
+                </svg>
+            </div>
+        </div>
+        <div class="script-side">
+            <span class="script-tag"><i class="fa-solid fa-headset"></i> 現場演講講稿</span>
+            <div class="psychology-tip"><i class="fa-solid fa-brain"></i> 心理學鉤子：結構預告（降低不確定性焦慮，建立認知地圖）。</div>
+            <div class="speech-text">為了讓大家接下來的30分鐘聽得毫不費力，我先為各位在腦袋裡建立一幅戰略地圖。我們今天的分析會精準地劃分為三個層次。
+
+首先，我們會帶各位剖析這家公司的「靈魂與本能」，看一間民營企業是怎麼演變成具備公共屬性的數位神殿；第二，我們會切入最硬核、最底層的「生產與作業管理 (POM)」，去解密這家工廠的心臟是如何維持高可靠度跳動的；最後，我們要談這一切的終點——ESG。
+
+這絕對不是三件獨立的事，這是一個關於「數位文明如何被高效管理，且如何永續存活」的閉環故事。</div>
+        </div>
+    </div>
+
+    <div class="presentation-block">
+        <div class="slide-side">
+            <span class="slide-num">Slide 03</span>
+            <h2 class="slide-header">研究動機一：數位時代的生存本能</h2>
+            <div class="slide-content">
+                <ul class="slide-text-list">
+                    <li>現代文明的數位基礎設施與控制感</li>
+                    <li>接管全球 30 億裝置的「好奇心」</li>
+                    <li>毫秒級全球數據供應的管理哲學</li>
+                </ul>
+            </div>
+            <div class="slide-visual">
+                <svg viewBox="0 0 400 250">
+                    <rect x="50" y="50" width="300" height="150" rx="10" fill="none" stroke="#4285F4" stroke-width="2" />
+                    <circle cx="200" cy="125" r="40" fill="none" stroke="#EA4335" stroke-width="2" />
+                    <path d="M100,80 L300,170" stroke="#cbd5e1" stroke-width="2" />
+                    <text x="200" y="230" text-anchor="middle" font-weight="700" fill="#4285F4">數位世界的水源與控制</text>
+                </svg>
+            </div>
+        </div>
+        <div class="script-side">
+            <span class="script-tag"><i class="fa-solid fa-headset"></i> 現場演講講稿</span>
+            <div class="psychology-tip"><i class="fa-solid fa-brain"></i> 心理學鉤子：【重點動機頁面】損失規避與控制本能。內容大幅擴充。</div>
+            <div class="speech-text">【研究動機深度展開】
+各位請看這張投影片，這是我們這組的第一個核心動機：探討數位時代的「生存控制感」。
+
+人類在幾萬年前的原始社會，生存所仰賴的是物理上的生存資源——水源、避難所與篝火。火光帶來了安全感，讓我們知道黑夜裡沒有野獸。但在2026年的今天，我們人類的生存控制感，已經高度依賴另一種無形資產，那就是「即時的資訊」。
+
+試想一個心理場景：當你走在一條陌生的路上，導航突然失靈；或者你正要決定一筆投資，搜尋引擎完全打不開。你體內壓力皮質醇的分泌速度會瞬間飆高。這就是人性——我們對未知充滿了原始的恐懼與焦慮。而 Google，在不知不覺中，接管了全球30億人口每天醒來後的「確定性」和「控制感」。
+
+這就是為什麼我們必須研究它。它已經不是傳統意義上的民營軟體企業了，它是一家公共基礎設施。它在毫秒之間完成全球數據供應的作業流程，本質上就是在維持這個數位部落的集體理智。它的作業效率只要慢一秒，全球經濟與人類心理就會產生巨大的損失與恐慌。我們想探討，這種維持數位世界心跳的生產管理，底層究竟有著什麼樣的控制美學？</div>
+        </div>
+    </div>
+
+    <div class="presentation-block">
+        <div class="slide-side">
+            <span class="slide-num">Slide 04</span>
+            <h2 class="slide-header">研究動機二：效率與永續的「獵人智慧」</h2>
+            <div class="slide-content">
+                <ul class="slide-text-list">
+                    <li>AI 算力擴張 vs 範疇三碳排放暴增的衝突</li>
+                    <li>挑戰「高效能」與「環保」的零和迷思</li>
+                    <li>破解「綠色 AI」的作業與獲利公式</li>
+                </ul>
+            </div>
+            <div class="slide-visual">
+                <svg viewBox="0 0 400 200">
+                    <path d="M50,150 L350,150" stroke="#1e293b" stroke-width="4"/>
+                    <rect x="100" y="50" width="50" height="100" fill="#EA4335"/>
+                    <rect x="250" y="20" width="50" height="130" fill="#34A853"/>
+                    <text x="125" y="180" text-anchor="middle">算力</text>
+                    <text x="275" y="180" text-anchor="middle">環境</text>
+                </svg>
+            </div>
+        </div>
+        <div class="script-side">
+            <span class="script-tag"><i class="fa-solid fa-headset"></i> 現場演講講稿</span>
+            <div class="psychology-tip"><i class="fa-solid fa-brain"></i> 心理學鉤子：【重點動機頁面】認知失調（Cognitive Dissonance）與懸念建立。</div>
+            <div class="speech-text">【研究動機深度展開】
+第二個動機，我想帶大家直面一場現代科技的道德與利益衝突，這關乎於「獵人的智慧」。
+
+在古老的原始部落中，最優秀的獵人明白一個規律：如果你為了解決今天的飢餓，放火燒毀了整座森林來捕捉野兔，那麼你今天確實可以飽餐一頓。但代價是，明天你的整個部落都會因為失去森林而面臨滅絕。這就是永續的本質。
+
+回到當下的現實，當前全球科技巨頭都在瘋狂地參與生成式 AI 的軍備競賽。每個人都想要更聰明、反應更快的模型——這就是那隻無比誘人的野兔。但代價呢？AI 模型的訓練與推理需要天文數字般的電力，導致科技公司的範疇三碳排放量和資料中心耗水量暴增。在傳統管理學的框架裡，大家都覺得這是一個死局，高效能與綠色環保是不可調和的「零和遊戲」。
+
+但這正是我們組最興奮的研究動機！我們觀察到 Google 正在試圖用最高明的生產作業管理 (POM) 去打破這個死局。它試圖證明，透過演算法優化和硬體重構，效率與永續其實可以形成正向循環。我們要帶大家破解這套「綠色 AI」的獲利與作業矩陣，因為這將決定未來所有企業在資源匱乏的地球上，究竟該如何活下去。</div>
+        </div>
+    </div>
+
+    <div class="presentation-block">
+        <div class="slide-side">
+            <span class="slide-num">Slide 05</span>
+            <h2 class="slide-header">核心價值：從車庫創業精神到神火</h2>
+            <div class="slide-content">
+                <ul class="slide-text-list">
+                    <li>1998 年 Menlo Park 車庫：組織全球資訊的原始初衷</li>
+                    <li>價值觀的心理上演進：Don't Be Evil 邁向 Do the Right Thing</li>
+                    <li>道德框架作為生產作業流程的最高導引</li>
+                </ul>
+            </div>
+            <div class="slide-visual">
+                <svg viewBox="0 0 400 200">
+                    <rect x="80" y="80" width="240" height="100" fill="#f8fafc" stroke="#1e293b" stroke-width="2"/>
+                    <path d="M60,80 L200,20 L340,80" fill="none" stroke="#EA4335" stroke-width="4"/>
+                    <text x="200" y="140" text-anchor="middle" font-weight="700" fill="#4285F4" font-size="24">信仰的發源地</text>
+                </svg>
+            </div>
+        </div>
+        <div class="script-side">
+            <span class="script-tag"><i class="fa-solid fa-headset"></i> 現場演講講稿</span>
+            <div class="psychology-tip"><i class="fa-solid fa-brain"></i> 心理學鉤子：故事敘事與框架效應（Framing Effect）。</div>
+            <div class="speech-text">一個龐大帝國的運轉，背後一定有一個極其簡單、甚至近乎信仰的起源。1998年的那間矽谷車庫，在心理學上代表的是「不被體制與資源束縛的原始創造力」。
+
+Larry Page 和 Sergey Brin 當時定下的使命非常瘋狂：「組織全球資訊」。當時他們定下了一個非常有名的內部禁忌，叫做 "Don't be evil"（不作惡）。但各位請注意，隨著 Google 重組為 Alphabet，這個核心價值在心理期望上完成了重大的跨越，變成了 "Do the right thing"（做正確的事）。
+
+這背後的心理轉變是什麼？「不作惡」是被動的自我約束，只要我不傷害人就好；而「做正確的事」是主動的社會承擔。當你的演算法和生產線已經握有足以影響全球資訊流動的『神火』時，你不能只是站在原地假裝自己無害，你必須主動利用這股力量去解決問題。這套道德框架，正是 Google 所有人數萬名工程師每天優化生產流程時，心裡那一條不能逾越的红線。</div>
+        </div>
+    </div>
+
+    <div class="presentation-block">
+        <div class="slide-side">
+            <span class="slide-num">Slide 06</span>
+            <h2 class="slide-header">環境 (E)：對太陽與季風的古老依賴</h2>
+            <div class="slide-content">
+                <ul class="slide-text-list">
+                    <li>24/7 全天候無碳能源 (CFE) 的極致挑戰</li>
+                    <li>將大自然的「隨機規律」納入資料中心生產排程</li>
+                    <li>2024 年底前達成簽署超過 8 GW 潔淨能源合約</li>
+                </ul>
+            </div>
+            <div class="slide-visual">
+                <svg viewBox="0 0 400 250">
+                    <circle cx="200" cy="120" r="80" fill="#f0fdf4" stroke="#34A853" stroke-width="2" stroke-dasharray="5,5"/>
+                    <circle cx="200" cy="120" r="30" fill="#FBBC05"/>
+                    <path d="M200,40 L200,90 M200,150 L200,200" stroke="#34A853" stroke-width="2"/>
+                    <text x="200" y="230" text-anchor="middle" font-weight="700" fill="#1b5e20">大自然律動與生產排程的結合</text>
+                </svg>
+            </div>
+        </div>
+        <div class="script-side">
+            <span class="script-tag"><i class="fa-solid fa-headset"></i> 現場演講講稿</span>
+            <div class="psychology-tip"><i class="fa-solid fa-brain"></i> 心理學鉤子：宏大敘事與對自然的敬畏（Awe Effect）。</div>
+            <div class="speech-text">談到環境保護 (Environmental)，很多公司喜歡玩弄文字遊戲。但 Google 在做的事，在心理層面上非常震撼，我稱之為「回歸古老的自然依賴」。
+
+人類挖掘了兩百年的地底化石燃料，那是貪婪地向地球的過去借債。而 Google 提出了一個叫「24/7 全天候無碳能源 (CFE)」的計畫。這幾個字背後代表的管理學野心非常驚人：一般的碳中和是，我今天在台北的資料中心燒了煤炭發電，我只要去花蓮買等量的風力發電證書，在帳面上抵銷就好。這叫公關，不叫改變。
+
+Google 要挑戰的是，在全天候運作、一秒都不能停機的生產設施（資料中心）裡，不論此時此刻是深夜還是無風，它所使用的每一度電，都必須來自當地電網的潔淨能源。這意味著，它要把太陽的升落、季風的吹拂這種不可預測的自然律動，強行納入它嚴密的工業生產排程。這種對自然規律的敬畏與適應，是生產管理史上從未有過的創舉。</div>
+        </div>
+    </div>
+
+    <div class="presentation-block">
+        <div class="slide-side">
+            <span class="slide-num">Slide 07</span>
+            <h2 class="slide-header">社會責任 (S)：不拋下任何一位成員</h2>
+            <div class="slide-content">
+                <ul class="slide-text-list">
+                    <li><strong>Grow with Google：</strong> 協助全球超過 1,000 萬人跨越 AI 數位落差</li>
+                    <li><strong>危機應變系統：</strong> AI 洪水預報系統覆蓋 80 多國、守護 4.6 億人</li>
+                    <li>將技術轉化為社群的集體安全感與歸屬感</li>
+                </ul>
+            </div>
+            <div class="slide-visual">
+                <svg viewBox="0 0 400 200">
+                    <circle cx="120" cy="100" r="40" fill="#4285F4" opacity="0.8"/>
+                    <circle cx="280" cy="100" r="40" fill="#34A853" opacity="0.8"/>
+                    <path d="M160,100 L240,100" stroke="#1e293b" stroke-width="4" marker-end="url(#arrow)"/>
+                    <text x="200" y="160" text-anchor="middle" font-weight="700">技術向人性的全面延伸</text>
+                </svg>
+            </div>
+        </div>
+        <div class="script-side">
+            <span class="script-tag"><i class="fa-solid fa-headset"></i> 現場演講講稿</span>
+            <div class="psychology-tip"><i class="fa-solid fa-brain"></i> 心理學鉤子：社會認同與利他心理（Altruism）。</div>
+            <div class="speech-text">在原始社會中，一個部落究竟強不強大、值不值得被尊重，評判的標準從來不是看最強壯的獵人能跑多快，而是看這個部落在面對災難時，如何對待那些最弱小、最無助的成員。
+
+Google 在社會責任 (Social) 上展現了極高的心理學智慧：它深知技術如果不平等，就會演變成一場殘酷的階級淘汰。當所有人都在為 AI 狂歡時，那些學不會數位工具的人怎麼辦？Google 透過 "Grow with Google" 計畫，在全球培訓了超過一千萬人學習數位與 AI 技能，這本質上是在給予弱者「數位生存的工具」。
+
+更具體的是它的 AI 洪水與災害預報系統。這套系統目前覆蓋了80多個國家，守護著4.6億的人口。Google 把他們在作業管理中精煉出的頂尖算力，變成了一把免費的雨傘，分發給那些可能被天災摧毀的邊緣部落。當大眾感覺到這家公司的技術能保住我的命、能給予我社群的安全感時，它就成功從一家被質疑的壟斷企業，轉化成了數位部落集體依賴的守護者。</div>
+        </div>
+    </div>
+
+    <div class="presentation-block">
+        <div class="slide-side">
+            <span class="slide-num">Slide 08</span>
+            <h2 class="slide-header">治理 (G)：道德禁忌與信任的長期博弈</h2>
+            <div class="slide-content">
+                <ul class="slide-text-list">
+                    <li>2018 年確立負責任的 AI 原則（社會效益、避免偏見、對人負責）</li>
+                    <li>推動「隱私沙盒」技術與減少第三方追蹤行為</li>
+                    <li>每年發布透明度報告，建立無形的「信任資本」</li>
+                </ul>
+            </div>
+            <div class="slide-visual">
+                <svg viewBox="0 0 400 200">
+                    <rect x="50" y="60" width="300" height="100" rx="10" fill="#f8fafc" stroke="#1e293b" stroke-width="2"/>
+                    <circle cx="200" cy="110" r="25" fill="#4285F4"/>
+                    <path d="M185,110 L215,110 M200,95 L200,125" stroke="white" stroke-width="3"/>
+                    <text x="200" y="190" text-anchor="middle" font-weight="700">信任：最低成本的商業潤滑劑</text>
+                </svg>
+            </div>
+        </div>
+        <div class="script-side">
+            <span class="script-tag"><i class="fa-solid fa-headset"></i> 現場演講講稿</span>
+            <div class="psychology-tip"><i class="fa-solid fa-brain"></i> 心理學鉤子：博弈論與信任資本（Trust Capital）。</div>
+            <div class="speech-text">治理 (Governance) 的本質，在心理學上是一場與全球使用者的「信任博弈」。大眾現在對大型科技公司普遍帶有一種根深蒂固的戒備：你是不是在偷看我的隱私？你的 AI 演算法是不是在暗中操控我的選票和思想？
+
+Google 的高層非常清楚這種集體焦慮。因此，他們在2018年就確立了負責任的 AI 指導原則：必須避免偏見、必須確保安全、必須對人類負責。他們甚至建立了內部審查的道德禁忌，拒絕將 AI 用於武器或大規模監視。
+
+這不是為了應付法規，而是一場高明的長期博弈。同時，他們每年主動發布透明度報告，把各國政府向 Google 索取用戶數據的次數公諸於世。這在心理上產生了「錨定效應」——讓用戶相信，Google 是站在使用者這一邊的。在商業世界裡，信任是成本最低、效率最高的潤滑劑，能幫公司擋掉無數的監管風險。</div>
+        </div>
+    </div>
+
+    <div class="presentation-block">
+        <div class="slide-side">
+            <span class="slide-num">Slide 09</span>
+            <h2 class="slide-header">2024 ESG 關鍵績效指標 (KPI)</h2>
+            <div class="slide-content">
+                <table class="kpi-table">
+                    <thead>
+                        <tr><th>分析類別</th><th>績效指標 (KPI)</th><th>最新表現數據</th><th>年度狀態</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>環境 (E)</td><td>再生能源採購匹配率</td><td>100% (連續八年)</td><td>✅ 已達標</td></tr>
+                        <tr><td>環境 (E)</td><td>範疇一、二排放減量</td><td>較上年度減少 12%</td><td>📈 持續優化</td></tr>
+                        <tr><td>社會 (S)</td><td>數位技能培訓人數</td><td>累積突破 1,000 萬人</td><td>✅ 已達標</td></tr>
+                        <tr><td>治理 (G)</td><td>第一級供應商責任審核</td><td>100% 全面覆蓋</td><td>✅ 全面達成</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="script-side">
+            <span class="script-tag"><i class="fa-solid fa-headset"></i> 現場演講講稿</span>
+            <div class="psychology-tip"><i class="fa-solid fa-brain"></i> 心理學鉤子：數據實證（錨定效應，將感性轉化為理性信任）。</div>
+            <div class="speech-text">請大家把目光集中到大螢幕上的這張資產與成效體檢表。這絕對不是一堆枯燥的 KPI，在管理學中，這是一個巨型系統的「心電圖報告」。
+
+100% 的再生能源匹配率，意味著這家公司連續八年，在法律與經濟層面上把自己的營運用電與大自然的清潔能量綁在了一起。範疇一和範疇二的排放量較去年降低了12%，這是在 AI 模型運算量暴增、全行業碳排都在失控踩油門的背景下，Google 逆勢踩下煞車的成果。
+
+這些硬數據在心理上給予我們這項研究最紮實的支撐：它向所有人證明，這家公司不僅有宏大的道德宏願，更具備冷酷、精準的執行力，能把虛無飄渺的理想，量化成每天在工廠後台運作的工程指標。</div>
+        </div>
+    </div>
+
+    <div class="presentation-block">
+        <div class="slide-side">
+            <span class="slide-num">Slide 10</span>
+            <h2 class="slide-header">生產作業流程：數據服務生命週期</h2>
+            <div class="slide-content">
+                <p style="font-weight:700; text-align:center; margin-bottom:10px;">Google 核心搜尋與 AI 的「數位加工廠線」</p>
+                <div class="process-flow">
+                    <div class="step"><i class="fa-solid fa-cloud-download"></i><h4>投入</h4><p>爬蟲抓取、算力配置</p></div>
+                    <div class="step"><i class="fa-solid fa-microchip"></i><h4>轉換</h4><p>模型推理、特徵標記</p></div>
+                    <div class="step"><i class="fa-solid fa-rocket"></i><h4>產出</h4><p>即時搜尋、AI 生成</p></div>
+                    <div class="step"><i class="fa-solid fa-arrows-rotate"></i><h4>反饋</h4><p>用戶行為、持續改善</p></div>
+                </div>
+            </div>
+        </div>
+        <div class="script-side">
+            <span class="script-tag"><i class="fa-solid fa-headset"></i> 現場演講講稿</span>
+            <div class="psychology-tip"><i class="fa-solid fa-brain"></i> 心理學鉤子：具象化比喻（將抽象技術對比原始採集，建立親切感）。</div>
+            <div class="speech-text">現在，我們正式推開防盜門，進入 Google 最神祕的區域——它的「數位加工廠線」，也就是生產與作業管理 (POM) 的核心。
+
+Google 生產的產品叫「資訊」，但它的作業本質，跟幾萬年前我們的祖先在荒野中採集漿果沒有任何區別。大家請看這幅流程圖：投入端 (Inputs) 是它的網路爬蟲，每天在混亂的互聯網荒野中採集海量的原始數據；接著進入轉換端 (Process)，這就是它的核心車間，透過 PageRank 演算法和 Gemini 巨型模型進行推理、過濾雜訊，就像祖先辨識哪些果實有毒、哪些能吃一樣。
+
+產出端 (Outputs) 就是交付給你乾淨、精煉、具備高價值的搜尋結果與 AI 回覆。而最精彩、最符合精實生產 (Lean) 靈魂的，是第四步的反饋 (Feedback)。你在螢幕上的每一次點擊、每一次停留、甚至每一次修正提問，都是在無形中為這條生產線提供優化數據。這是一條具有生命力、會自我進化的自動化連續生產線。</div>
+        </div>
+    </div>
+
+    <div class="presentation-block">
+        <div class="slide-side">
+            <span class="slide-num">Slide 11</span>
+            <h2 class="slide-header">作業管理：對物質與資源的古老尊重</h2>
+            <div class="slide-content">
+                <ul class="slide-text-list">
+                    <li>軟硬體整合的「垂直整合」管理戰略</li>
+                    <li>新款 Pixel 9 系列機身 100% 使用回收鋁材</li>
+                    <li>反向物流的極致：年度重用 880 萬件伺服器硬體組件</li>
+                </ul>
+            </div>
+            <div class="slide-visual">
+                <svg viewBox="0 0 400 200">
+                    <path d="M50,150 C150,50 250,50 350,150" fill="none" stroke="#34A853" stroke-width="4" stroke-linecap="round"/>
+                    <circle cx="200" cy="95" r="20" fill="#4285F4"/>
+                    <text x="200" y="170" text-anchor="middle" font-weight="700">反向物流與物料循環</text>
+                </svg>
+            </div>
+        </div>
+        <div class="script-side">
+            <span class="script-tag"><i class="fa-solid fa-headset"></i> 現場演講講稿</span>
+            <div class="psychology-tip"><i class="fa-solid fa-brain"></i> 心理學鉤子：觸感心理學（Material Psychology）與責任綁定。</div>
+            <div class="speech-text">很多人以為 Google 是一家純軟體公司，不需要碰實體。但我們這組研究後發現，在它的作業管理中，有一項極高明的策略叫「垂直整合」。
+
+因為 Google 意識到：如果你不碰觸物質，你就無法真正掌控永續。當你拿起它的 Pixel 9 手機，那種細緻的機身觸感，背後是 100% 的回收鋁材。這在心理學上是在向消費者的潛意識發送信號：這是一個對地球負責的工具。
+
+在工廠端，Google 建立了龐大的「反向物流」系統。當全球資料中心的伺服器舊了、要淘汰了，他們不是當成電子垃圾扔掉，而是像古老獵人珍惜每一塊獸皮與獸骨一樣，在去年精準回收並重用了高達880萬件的硬體組件。這種對物質的極致尊重，不僅讓他們避開了供應鏈斷鏈的風險，更在帳面上省下了天文數字的原材料採購成本。</div>
+        </div>
+    </div>
+
+    <div class="presentation-block">
+        <div class="slide-side">
+            <span class="slide-num">Slide 12</span>
+            <h2 class="slide-header">品質管理 (SRE)：黑夜中守望營火的哨兵</h2>
+            <div class="slide-content">
+                <ul class="slide-text-list">
+                    <li><strong>SRE (網站可靠性工程)：</strong> 將運維管理轉化為軟體工程問題</li>
+                    <li><strong>錯誤預算 (Error Budget)：</strong> 容許有限故障以換取極速創新的心理彈性</li>
+                    <li>無責備 (Post-mortem) 文化，聚焦於系統流程的持續修正</li>
+                </ul>
+            </div>
+            <div class="slide-visual">
+                <svg viewBox="0 0 400 200">
+                    <rect x="50" y="40" width="300" height="120" fill="#1e293b" rx="6"/>
+                    <path d="M50,120 Q120,60 200,120 T350,60" fill="none" stroke="#FBBC05" stroke-width="3"/>
+                    <text x="200" y="190" text-anchor="middle" font-weight="700">混亂與穩定的精準平衡</text>
+                </svg>
+            </div>
+        </div>
+        <div class="script-side">
+            <span class="script-tag"><i class="fa-solid fa-headset"></i> 現場演講講稿</span>
+            <div class="psychology-tip"><i class="fa-solid fa-brain"></i> 心理學鉤子：容錯心理與控制欲的釋放。</div>
+            <div class="speech-text">生產管理最怕什麼？最怕生產線停擺、最怕當機。大部分企業的品管思維是「嚴防死守」，追求 100% 的零缺點。但 Google 卻在品質管理上發明了一套顛覆管理學的體系，叫做 SRE（網站可靠性工程）。
+
+Google 的管理學智慧在於，它承認人性的不完美與世界的混亂。他們提出了一個極具心理學彈性的概念，叫「錯誤預算 (Error Budget)」。他們認為，追求 100% 的不當機是愚蠢的，那會逼死工程師，讓所有人不敢創新。如果系統開機率目標是 99.9%，那剩下的 0.1% 就是錯誤預算。
+
+這筆預算不是用來揮霍的，而是用來「大膽冒險」的。只要預算沒扣完，工程師就可以瘋狂地上線新功能。而一旦出了事故，他們的內部文化叫「無責備事後檢討 (Blameless Post-mortem)」。不抓戰犯、不懲罰個人，而是坐下來冷靜分析系統流程哪裡有漏洞。這種把恐懼從工程師心裡拔除、在混亂中管理穩定的格局，才是頂尖企業品管的真正段位。</div>
+        </div>
+    </div>
+
+    <div class="presentation-block">
+        <div class="slide-side">
+            <span class="slide-num">Slide 13</span>
+            <h2 class="slide-header">生產資源：數位文明的血管與物理硬傷</h2>
+            <div class="slide-content">
+                <ul class="slide-text-list">
+                    <li>全球部署超過 20 個雲端核心區域與廠房</li>
+                    <li>獨家鋪設橫跨三大洋的自有海底光纖電纜系統</li>
+                    <li>數千個邊緣節點 (GGC) 讓內容生產無限貼近終端使用者</li>
+                </ul>
+            </div>
+            <div class="slide-visual">
+                <svg viewBox="0 0 400 200">
+                    <path d="M50,100 Q200,20 350,100 T200,180" fill="none" stroke="#4285F4" stroke-width="3" stroke-dasharray="8,4"/>
+                    <text x="200" y="130" text-anchor="middle" font-weight="700" fill="#4285F4">重資產建構的物理護城河</text>
+                </svg>
+            </div>
+        </div>
+        <div class="script-side">
+            <span class="script-tag"><i class="fa-solid fa-headset"></i> 現場演講講稿</span>
+            <div class="psychology-tip"><i class="fa-solid fa-brain"></i> 心理學鉤子：宏大感（Grandeur）與安全感錨定。</div>
+            <div class="speech-text">很多人常有一種錯覺，覺得網路世界是虛擬的、飄在雲端上的。不，網路世界無比沉重。
+
+大家請看這張基礎設施圖。Google 為了確保它的生產資源不受制於人，它做了一件非常有長期主義霸氣的事：它不租用別人的伺服器，它自己滿世界蓋「廠房」（資料中心）；它甚至不滿足於租用電信商的網路，它自己買船，在太平洋、大西洋的海底鋪設專屬的「海底光纖電纜」。
+
+這些深埋在幾萬呎深海裡、對抗著水壓與地殼變動的光纖，就是現代數位文明的「血管」。這種重資產的生產資源配置，在心理上給予對手一種絕望的壓迫感。它用物理世界裡最巨大的資產壁壘，給了所有使用者一個承諾：不論世界發生什麼變故，我的數據動脈，永遠能以毫秒級的速度為你跳動。</div>
+        </div>
+    </div>
+
+    <div class="presentation-block">
+        <div class="slide-side">
+            <span class="slide-num">Slide 14</span>
+            <h2 class="slide-header">技術生產力：克服極限的工具本能</h2>
+            <div class="slide-content">
+                <div class="bar-container">
+                    <div class="bar-item">
+                        <div class="bar-lbl">AI 訓練效能</div>
+                        <div class="bar-wrapper"><div class="bar-fill" style="width: 90%;">2.8x 倍速運算</div></div>
+                    </div>
+                    <div class="bar-item">
+                        <div class="bar-lbl">能源效率提升</div>
+                        <div class="bar-wrapper"><div class="bar-fill" style="width: 95%; background-color:#34A853;">3.0x 倍極致省電</div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="script-side">
+            <span class="script-tag"><i class="fa-solid fa-headset"></i> 現場演講講稿</span>
+            <div class="psychology-tip"><i class="fa-solid fa-brain"></i> 心理學鉤子：工具進化的優越感與邊際成本降低。</div>
+            <div class="speech-text">人類文明進化的本質，就是一部「工具進化史」。當別的部落還在拿木棍打獵時，如果你能率先冶煉出鐵器，你就能獲得降維打擊的優勢。
+
+在 AI 的生產力戰場上，Google 的那把鐵器，叫做 TPU (Tensor Processing Unit)。當全世界的企業都在排隊、高價去搶購晶片時，Google 早在十年前就在後台秘密研發自己的客製化晶片。
+
+大家看這張有效產出圖表：最新一代的 TPU 跑 AI 模型，訓練速度提升2.8倍，最關鍵的是，它的能源效率整整提升了3倍。在生產管理中，這代表它的「邊際生產成本」被壓低到了競爭對手無法想像的地步。這就是技術領先帶來的工具本能，也是 Google 敢在算力大戰中持續踩油門的最大底氣。</div>
+        </div>
+    </div>
+
+    <div class="presentation-block">
+        <div class="slide-side">
+            <span class="slide-num">Slide 15</span>
+            <h2 class="slide-header">綠色 AI：萬物有靈的作業共生儀式</h2>
+            <div class="slide-content">
+                <ul class="slide-text-list">
+                    <li>利用 DeepMind AI 演算法即時接管資料中心冷卻作業</li>
+                    <li>成功降低資料中心冷卻能源消耗達 40%</li>
+                    <li>技術不再流於征服自然，而是與環境和諧協商</li>
+                </ul>
+            </div>
+            <div class="slide-visual">
+                <svg viewBox="0 0 400 200">
+                    <rect x="150" y="50" width="100" height="100" rx="10" fill="#4285F4" opacity="0.9"/>
+                    <circle cx="200" cy="100" r="20" fill="#FFF"/>
+                    <path d="M100,100 Q200,20 300,100" fill="none" stroke="#34A853" stroke-width="3"/>
+                    <text x="200" y="180" text-anchor="middle" font-weight="700">演算法與環境的協調</text>
+                </svg>
+            </div>
+        </div>
+        <div class="script-side">
+            <span class="script-tag"><i class="fa-solid fa-headset"></i> 現場演講講稿</span>
+            <div class="psychology-tip"><i class="fa-solid fa-brain"></i> 心理學鉤子：和諧共感（Harmony Effect）與解開動機懸念。</div>
+            <div class="speech-text">這是我整份報告裡最高興分享的一個個案，因為它完美地解開了我們在開場時提到的「研究動機二」——高效能與環保難道真的是死局嗎？
+
+Google 給出的答案，叫「綠色 AI」。他們把自家的 DeepMind AI 演算法，放進了那些高熱、高耗能的資料中心裡，不讓它去算數據，而是讓它去「感受溫度」。AI 連接了數萬個感測器，去敏銳地觀察氣流、氣壓、伺服器的負載，然後像一個具有靈性的管家一樣，即時微調水泵的轉速和風扇的角度。
+
+這個作業管理的改進，帶來了驚人的結果：它讓整個資料中心的冷卻能耗，瞬間降低了 40%。這在心理學和管理學上給了我們一個極大的啟發：最強大的科技，其終極目的從來不是去「征服自然」或掠奪資源，而是學會如何與環境達成最精準、最謙遜的共生。</div>
+        </div>
+    </div>
+
+    <div class="presentation-block">
+        <div class="slide-side">
+            <span class="slide-num">Slide 16</span>
+            <h2 class="slide-header">循環經濟：塵歸塵，土歸土的生產美學</h2>
+            <div class="slide-content">
+                <ul class="slide-text-list">
+                    <li>模仿自然界「無廢棄物」的生產閉環體系</li>
+                    <li>伺服器硬體高達 84% 的營運廢棄物成功分流與重生</li>
+                    <li>將環境負擔轉化為企業內部資產的生命週期管理</li>
+                </ul>
+            </div>
+            <div class="slide-visual">
+                <svg viewBox="0 0 400 200">
+                    <circle cx="200" cy="100" r="60" fill="none" stroke="#34A853" stroke-width="4"/>
+                    <path d="M200,40 L210,50 L190,50 Z" fill="#34A853"/>
+                    <text x="200" y="110" text-anchor="middle" font-weight="700">封閉式循環美學</text>
+                </svg>
+            </div>
+        </div>
+        <div class="script-side">
+            <span class="script-tag"><i class="fa-solid fa-headset"></i> 現場演講講稿</span>
+            <div class="psychology-tip"><i class="fa-solid fa-brain"></i> 心理學鉤子：心理補償與秩序美感（Order & Renewal）。</div>
+            <div class="speech-text">大自然從不製造垃圾。森林裡枯死的一棵樹，會變成真菌的溫床、會化作土壤的養分，這是一個完美的循環。只有我們人類的工業體系，會製造出堆積如山的污染。
+
+Google 的生產管理，正在試圖模仿這種大自然的生命循環。他們在全球的資料中心裡，推動了高達 84% 的營運廢棄物轉化率。這意味著，一塊壞掉的晶片、一條淘汰的線材，在他們的工廠流程裡，會被拆解、精煉，然後重新化作新硬體的養分。
+
+這在管理心理學上能給予我們極大的舒適感和秩序美。它向大眾證明，商業生產不一定非得是對大地的虧欠與掠奪。當你的反向供應鏈可以做到「塵歸塵、土歸土」時，你的生產管理就已經超越了單純的算力，而是上升到了一種具備道德美學的企業藝術。</div>
+        </div>
+    </div>
+
+    <div class="presentation-block">
+        <div class="slide-side">
+            <span class="slide-num">Slide 17</span>
+            <h2 class="slide-header">組織架構：策略隔離與風險對沖</h2>
+            <div class="slide-content">
+                <ul class="slide-text-list">
+                    <li>2015 年重組控股集團 Alphabet 的經營戰略</li>
+                    <li>核心成熟業務 (Google) 與遠期高風險新創 (Other Bets) 的物理切割</li>
+                    <li>作業管理上的資源精準配置與創新容錯空間</li>
+                </ul>
+            </div>
+            <div class="slide-visual">
+                <svg viewBox="0 0 400 200">
+                    <rect x="150" y="30" width="100" height="40" fill="#1e293b" rx="4"/>
+                    <path d="M200,70 L100,130 M200,70 L300,130" stroke="#cbd5e1" stroke-width="2"/>
+                    <circle cx="100" cy="150" r="30" fill="#4285F4"/>
+                    <circle cx="300" cy="150" r="30" fill="#EA4335"/>
+                </svg>
+            </div>
+        </div>
+        <div class="script-side">
+            <span class="script-tag"><i class="fa-solid fa-headset"></i> 現場演講講稿</span>
+            <div class="psychology-tip"><i class="fa-solid fa-brain"></i> 心理學鉤子：安全感（Risk Isolation）與多角化避險心理。</div>
+            <div class="speech-text">一個聰明的部落首領，絕對不會把自己好不容易採集到的所有糧食，都藏在同一個山洞裡。因為一旦山洞塌方或遇到火災，整個部落就會瞬間滅絕。
+
+這就是 Google 在2015年進行重大重組、成立控股集團 Alphabet 的底層心理學。他們在組織作業上做了一道物理切割：把賺錢的、成熟的 Google 業務（搜尋、廣告、YouTube），跟那些聽起來像科幻小說、高風險、隨時可能失敗的 Other Bets（自動駕駛 Waymo、生命科學 Verily）完全分開。
+
+這種架構在作業管理上叫做「風險隔離」。它給了核心業務最穩定的環境，讓牛市的資金不會被創新項目的失敗所拖垮；同時，它給了內部創新者最自由、最不需要恐懼失敗的實驗場。這是一種極高明的生存對沖策略。</div>
+        </div>
+    </div>
+
+    <div class="presentation-block">
+        <div class="slide-side">
+            <span class="slide-num">Slide 18</span>
+            <h2 class="slide-header">市場統治力：數據驅動之巨型規模</h2>
+            <div class="slide-content">
+                <div class="tiled">
+                    <div class="tile"><h3>91%</h3><p>全球搜尋引擎市佔率</p></div>
+                    <div class="tile" style="border-bottom-color: #EA4335;"><h3>30 億</h3><p>活躍 Android 裝置總數</p></div>
+                    <div class="tile" style="border-bottom-color: #FBBC05;"><h3>10 億</h3><p>YouTube 每日觀看小時</p></div>
+                </div>
+            </div>
+        </div>
+        <div class="script-side">
+            <span class="script-tag"><i class="fa-solid fa-headset"></i> 現場演講講稿</span>
+            <div class="psychology-tip"><i class="fa-solid fa-brain"></i> 心理學鉤子：社會認同（Social Proof）與權力的雙刃劍。</div>
+            <div class="speech-text">91% 的搜尋市佔率、30億台活躍裝置。當我們看到這些數字時，在心理學上，它已經產生了一種叫「數位重力」的現象。它像一個黑洞一樣，把所有人的注意力和數據源源不斷地吸進去。
+
+但請大家注意，我們這組列出這些數字，絕對不是在幫 Google 炫耀它的壟斷地位。相反地，這是在描述一種巨大的「體量重擔」。
+
+當你的規模達到這個級別時，你的一舉一動就不再是你公司內部的事。你的一個演算法更新，可能決定了成千上萬家中小企業的生死；你的資料中心多燒一度電，地球的碳排指標就會立刻波動。我們研究這種規模，是為了引導出接下來最核心的結論：巨大的權力背後，往往綁定著等量的生存責任。如果這頭大象跌倒了，整個數位森林都會陪葬。</div>
+        </div>
+    </div>
+
+    <div class="presentation-block">
+        <div class="slide-side">
+            <span class="slide-num">Slide 19</span>
+            <h2 class="slide-header">經營總結：TOWS 策略交叉矩陣</h2>
+            <div class="slide-content">
+                <div class="tows-matrix">
+                    <div class="m-head" style="font-size:11px;">內部 \ 外部</div><div class="m-head" style="color:var(--g-green);">機會 (O)</div><div class="m-head" style="color:var(--g-red);">威脅 (T)</div>
+                    <div class="m-head" style="color:var(--g-blue);">優勢 (S)</div>
+                    <div class="m-box"><h5>SO 戰略</h5>利用 TPU 算力優勢，率先布局企業級綠色 AI 核心市場。</div>
+                    <div class="m-box"><h5>ST 戰略</h5>發揮 SRE 系統高可靠性，抵禦競爭對手穩定度挑戰。</div>
+                    <div class="m-head" style="color:var(--g-yellow);">劣勢 (W)</div>
+                    <div class="m-box"><h5>WO 戰略</h5>加速雲端業務多角化，降低對單一廣告營收的心理依賴。</div>
+                    <div class="m-box"><h5>WT 策略</h5>在反壟斷監管下，提高治理透明度以避免營運風險。</div>
+                </div>
+            </div>
+        </div>
+        <div class="script-side">
+            <span class="script-tag"><i class="fa-solid fa-headset"></i> 現場演講講稿</span>
+            <div class="psychology-tip"><i class="fa-solid fa-brain"></i> 心理學鉤子：邏輯服從與權威感（Authority Effect）。</div>
+            <div class="speech-text">（語氣轉向極度自信與權威）老師，各位同學們，我們小組不打算只停留在表面上的強弱條列。為了展現對個案的深度沉浸，我們進一步推導出了這套專業的 TOWS 交叉策略矩陣。
+
+請看投影片上的交叉推導：當我們把內部的優勢 (Strengths) 拿去對接外部的機會 (Opportunities) 時，我們推導出了 SO 戰略——Google 應該利用自己十年的 TPU 算力優勢，在當前生成式 AI 爆發的關頭，率先建立綠色 AI 的產業標準。
+
+而面對劣勢與威脅的 WT 戰略，則理智地指出：在全球反壟斷法規日趨嚴格的變革下，Google 必須透過加強數據治理與提高透明度，來降低自身的法律與營運風險。這張矩陣圖向大家證明，這家科技巨頭的每一項高層決策，絕對不是拍腦袋決定的，而是在內部資源與外部生存威脅之間，經過精密的經營數學計算出的最優解。</div>
+        </div>
+    </div>
+
+    <div class="presentation-block">
+        <div class="slide-side">
+            <span class="slide-num">Slide 20</span>
+            <h2 class="slide-header">結論一：效率與良知從來不是零和遊戲</h2>
+            <div class="slide-content">
+                <p style="font-size: 22px; font-weight: 700; color: var(--g-green);">ESG 與 POM 的深度共生體系</p>
+                <p>Google 證明了：追求極致的「生產作業管理」，其本質與「永續發展」完全同構。善良，本身就是一種具備高產出的商業模式。</p>
+            </div>
+            <div class="slide-visual">
+                <svg viewBox="0 0 400 200">
+                    <circle cx="160" cy="100" r="70" fill="#4285F4" opacity="0.3"/>
+                    <circle cx="240" cy="100" r="70" fill="#34A853" opacity="0.3"/>
+                    <text x="200" y="105" text-anchor="middle" font-weight="700" font-size="20">效率 × 良知</text>
+                </svg>
+            </div>
+        </div>
+        <div class="script-side">
+            <span class="script-tag"><i class="fa-solid fa-headset"></i> 現場演講講稿</span>
+            <div class="psychology-tip"><i class="fa-solid fa-brain"></i> 心理學鉤子：【重點結論頁面】認知重塑與價值昇華。內容大幅擴充。</div>
+            <div class="speech-text">【結論深度總結展開】
+現在，我們的報告已經接近尾聲，我想向各位交付我們這組最核心的、也是最重要的一個結論。
+
+在過去傳統的商業思維裡，所有的企業家與管理學者都把 ESG 視為一種「企業的累贅」或是「公關的稅收」。大家心裡的潛意識是：我為了賺錢，我就得去破壞環境、壓榨供應鏈；而我如果要做環保、搞福利，我就得犧牲我的利潤、降低我的效率。這在心理學上叫利己與利他的對立迷思。
+
+但透過我們這 30 分鐘對 Google 的深度拆解，我們得出第一個顛覆性的洞察：**效率與良知，從來就不是零和遊戲。** 大家回頭看看 Google 的邏輯——當它追求極致的生產作業管理，用 AI 優化冷卻系統時，它省下了 40% 的電費，這叫降低 POM 成本，但同時它降低了範疇二的碳排放，這叫實踐 ESG。當它建立反向物流，回收重用880萬件伺服器組件時，它避開了稀土材料短缺的風險，這叫供應鏈彈性，但同時它減少了電子垃圾，這叫資源循環。
+
+這就是卓越管理學的真相：**最高的效率，往往就是最徹底的永續；而真正的善良，本身就是一種極高生產力的商業模式。** 這是我們希望傳達給在座每位未來管理者的第一個核心結論。</div>
+        </div>
+    </div>
+
+    <div class="presentation-block">
+        <div class="slide-side">
+            <span class="slide-num">Slide 21</span>
+            <h2 class="slide-header">結論二：邁向 AI 時代的永續轉折點</h2>
+            <div class="slide-content">
+                <p style="font-size: 22px; font-weight: 700; color: var(--g-blue);">卓越企業的終極定義</p>
+                <p>技術終將老去，但經營的智慧會留下來。AI 的存在不是為了要把人類變成機器，而是要用機器的效率，讓我們有更多時間去思考人性。</p>
+            </div>
+            <div class="slide-visual">
+                <svg viewBox="0 0 400 200">
+                    <path d="M50,160 Q200,140 350,40" fill="none" stroke="#4285F4" stroke-width="5" stroke-linecap="round"/>
+                    <circle cx="350" cy="40" r="10" fill="#34A853"/>
+                    <text x="200" y="180" text-anchor="middle" font-weight="700">科技與人性的終極交匯</text>
+                </svg>
+            </div>
+        </div>
+        <div class="script-side">
+            <span class="script-tag"><i class="fa-solid fa-headset"></i> 現場演講講稿</span>
+            <div class="psychology-tip"><i class="fa-solid fa-brain"></i> 心理學鉤子：【重點結論頁面】情感共鳴與長期主義（終局思維）。</div>
+            <div class="speech-text">【結論深度總結展開】
+最後的最後，我想拋開冰冷的指標，跟各位分享一個關於我們這個世代的終局思維。
+
+我們正處在一個 AI 狂奔、技術迭代快到讓人窒息的轉折點。每天都有新的模型發布，每個人都在焦慮自己會不會被機器取代，甚至在擔心這個世界的資源會不會被數據工廠給榨乾。
+
+但在完成這份報告後，我們小組得出一個充滿希望的最終總結：**技術終將老去，但經營的智慧和責任感會留下來。** 未來十年，卓越企業的定義將會被徹底重寫。二零世紀的卓越企業，看的是損益表上的最後一條淨利，看的是你掠奪了多少市場；但21世紀的卓越企業，比的是誰能用最少的地球資源，去創造最大的社會福祉。誰的生產線最不給地球添麻煩，誰才是賽道上真正的贏家。
+
+Google 跑得極快的 TPU 和晶片，終究會變成博物館裡的廢鐵。但它所展示的、將機器的極致效率轉化為對地球責任感的這套管理哲學，會成為未來商業文明的燈塔。**AI 的存在，從來就不是要把人變成冰冷的機器，而是要用機器的極致效率，把人類從繁瑣的勞動中解放出來，讓我們有更多的時間，回歸大自然，回歸人性。**
+
+這，就是我們第二組從 Google 身上學到最震撼、也最想送給各位的一堂課。</div>
+        </div>
+    </div>
+
+    <div class="presentation-block">
+        <div class="slide-side">
+            <span class="slide-num">Slide 22</span>
+            <h2 class="slide-header">問題與討論 (Q&A)</h2>
+            <div class="slide-content" style="text-align: center;">
+                <h3 style="font-size: 60px; color: var(--g-blue); margin-bottom: 20px;">Q & A</h3>
+                <p>期待與各位進行深度的思維碰撞</p>
+            </div>
+        </div>
+        <div class="script-side">
+            <span class="script-tag"><i class="fa-solid fa-headset"></i> 現場演講講稿</span>
+            <div class="psychology-tip"><i class="fa-solid fa-brain"></i> 心理學鉤子：互惠心理（Reciprocity）與從容控場。</div>
+            <div class="speech-text">（將講稿或遙控器輕輕放下，雙手自然交疊身前，語氣輕鬆放慢，展現絕對的自信與從容）
+
+謝謝大家。這是我這30分鐘以來，最期待的一個環節。
+
+因為我知道，在座的各位對於 Google 這頭全球最大的「數位怪獸」，心裡一定有著不同的觀點、甚至帶有犀利的質疑。無論是關於 SRE 品質管理的運作細節、TOWS 矩陣的戰略推導，還是對 Google ESG 數據背後的真實性懷疑，我和我的組員們都已經完全沉浸在這個題目裡，並且做好了準備。
+
+現在，請提出你們的問題，讓我們一起探討未來。謝謝大家！</div>
+        </div>
+    </div>
+
+</body>
+</html>
